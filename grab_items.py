@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
+#  testing
 def get_soup():
     # get the first page of offerup using 'nintendo switch' and ship nationwide
     url = 'http://offerup.com/search/?delivery_param=s&q=switch'
