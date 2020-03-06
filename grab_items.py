@@ -3,9 +3,11 @@ from bs4 import BeautifulSoup
 
 
 #  testing
-def get_soup():
+def get_soup(search_keywords):
     # get the first page of offerup using 'nintendo switch' and ship nationwide
-    url = 'http://offerup.com/search/?delivery_param=s&q=switch'
+    # https://offerup.com/search/?delivery_param=s&q=nintendo%20switch
+    keywords = search_keywords.replace(" ", "%20")
+    url = 'http://offerup.com/search/?delivery_param=s&q=' + keywords
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     result = requests.get(url, headers=headers)
     print(result.status_code)
@@ -14,8 +16,8 @@ def get_soup():
     return soup
 
 
-def recent_switch_listings():
-    soup = get_soup()
+def recent_switch_listings(search_keywords):
+    soup = get_soup(search_keywords)
 
     # grabbing first however many 'cards' because of disabled javascript and their information
     card_info = []
@@ -58,5 +60,5 @@ def recent_switch_listings():
 
 
 if __name__ == '__main__':
-    recent_switch_listings()
+    recent_switch_listings("Nintendo Switch")
     
